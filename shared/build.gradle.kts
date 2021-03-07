@@ -26,7 +26,24 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}")
+
+                /*Ktor*/
+                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
+
+                /*Coroutines*/
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
+                implementation("com.squareup.sqldelight:coroutines-extensions:${Versions.sql_delight}")
+
+                /*DI*/
+                implementation("org.kodein.di:kodein-di:${Versions.kodein}")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -36,6 +53,15 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.google.android.material:material:1.3.0")
+
+                /*Ktor*/
+                api("io.ktor:ktor-client-okhttp:${Versions.ktor}")
+
+                /*Coroutines*/
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
+
+                /*Database*/
+                api("com.squareup.sqldelight:android-driver:${Versions.sql_delight}")
             }
         }
         val androidTest by getting {
@@ -44,7 +70,15 @@ kotlin {
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+        val iosMain by getting {
+            dependencies {
+                /*Ktor*/
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+
+                /*Database*/
+                implementation("com.squareup.sqldelight:native-driver:${Versions.sql_delight}")
+            }
+        }
         val iosTest by getting
     }
 }
