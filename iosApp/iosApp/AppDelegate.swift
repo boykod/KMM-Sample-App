@@ -4,8 +4,10 @@ import shared
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Logger().log(tag: nil, message: "onCreate")
         // Override point for customization after application launch.
+        
+        Logger().log(tag: nil, message: "onCreate")
+        DiInjection().doInit()
         return true
     }
 

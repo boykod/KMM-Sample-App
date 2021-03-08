@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ua.ck.sampleapp.androidApp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".application.App"
         android:allowBackup="false"
         android:label="Sample KMM App"
         android:supportsRtl="true"
