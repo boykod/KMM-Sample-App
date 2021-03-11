@@ -1,23 +1,23 @@
 package ua.ck.sampleapp.shared.data.base
 
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ua.ck.sampleapp.shared.Logger
 
 
 abstract class BaseRepository {
 
-    val networkScope = CoroutineScope(Dispatchers.Default)
+    fun launch(block: suspend CoroutineScope.() -> Unit) =
+        GlobalScope.launch(context = exceptionHandler, block = block)
 
-    internal fun executeNetworkOrDbAction(action: suspend () -> Unit) {
-        networkScope.launch {
-            try {
-                action.invoke()
-            } catch (throwable: Throwable) {
-                Logger().log(message = "failed")
-            }
-        }
+    val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        handleError(throwable)
+    }
+
+    private fun handleError(throwable: Throwable) {
+        Logger().log(message = "Something went wrong: $throwable")
     }
 
 }

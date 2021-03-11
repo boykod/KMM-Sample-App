@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Logger().log("MainActivity", "onCreate")
 
-        setContent { GreetingView(title = Greeting().greeting()) }
+        setContent { GreetingView(MainViewModel()) }
     }
 }
