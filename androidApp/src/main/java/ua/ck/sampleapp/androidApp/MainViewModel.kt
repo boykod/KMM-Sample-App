@@ -12,10 +12,10 @@ class MainViewModel : ViewModel(), UserView {
         userView = this@MainViewModel
     }
 
-    val userData = MutableLiveData<String>()
+    val userData = MutableLiveData<GithubUserResponse>()
 
     init {
-        userRepository.getUser("boykod")
+        userRepository.getUser("JakeWharton")
     }
 
     fun getUserByUsername(username: String) {
@@ -23,7 +23,7 @@ class MainViewModel : ViewModel(), UserView {
     }
 
     override fun updateUserData(data: GithubUserResponse) {
-        userData.value = data.toString()
+        userData.value = data
     }
 
 }

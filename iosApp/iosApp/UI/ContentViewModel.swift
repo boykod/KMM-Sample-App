@@ -12,7 +12,18 @@ import shared
 
 final class ContentViewModel: ObservableObject, UserView {
 
-    @Published private(set) var userData = "title_userdata"
+    @Published var userData = GithubUserResponse(
+        login: "",
+        url: "",
+        avatar: "",
+        name: "",
+        email: nil,
+        followers: 0,
+        following: 0,
+        location: "",
+        publicRepos: 0,
+        publicGists: 0
+    )
     
     private lazy var userRepository: UserRepository = {
         let userRepository = UserRepository()
@@ -22,7 +33,7 @@ final class ContentViewModel: ObservableObject, UserView {
     }()
     
     init() {
-        getUserByUsername(username: "boykod")
+        getUserByUsername(username: "JakeWharton")
     }
     
     func getUserByUsername(username: String) {
@@ -30,7 +41,13 @@ final class ContentViewModel: ObservableObject, UserView {
     }
     
     func updateUserData(data: GithubUserResponse) {
-        userData = data.description()
+        userData = data
+    }
+    
+    func openUserProfile() {
+        URL(string: userData.url).map {
+            UIApplication.shared.open($0)
+        }
     }
 
 }
