@@ -84,7 +84,7 @@ dependencies {
     implementation(project(":shared"))
 
     implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.appcompat:appcompat:1.3.0-beta01")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
     /*Compose*/
@@ -96,6 +96,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:${Versions.compose_activity}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
+    implementation("dev.chrisbanes.accompanist:accompanist-coil:0.6.2")
 
     /*Oolong*/
     implementation("org.oolong-kt:oolong:${Versions.oolong}")

@@ -45,5 +45,5 @@ internal val apiModule = DI.Module(API_MODULE_NAME) {
 }
 
 internal val repositoryModule = DI.Module(REPOSITORY_MODULE_NAME) {
-    bind<UserRepository>() with provider { UserRepository() }
+    bind<UserRepository>() with provider { UserRepository(instance()) }
 }

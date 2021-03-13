@@ -12,5 +12,12 @@ data class GithubUserResponse(
     @SerialName(value = "avatar_url")
     val avatar: String,
     val name: String,
-    val location: String
+    val email: String?,
+    val followers: Int,
+    val following: Int,
+    val location: String,
+    @SerialName(value = "public_repos")
+    val publicRepos: Int,
+    @SerialName(value = "public_gists")
+    val publicGists: Int
 )

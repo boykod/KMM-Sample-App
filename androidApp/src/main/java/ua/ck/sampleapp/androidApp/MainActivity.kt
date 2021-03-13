@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import ua.ck.sampleapp.shared.Logger
-import ua.ck.sampleapp.shared.PlatformStore.init
-import ua.ck.sampleapp.shared.PlatformStore.update
-import ua.ck.sampleapp.shared.PlatformStore.view
+import ua.ck.sampleapp.shared.store.user.UserStore.init
+import ua.ck.sampleapp.shared.store.user.UserStore.update
+import ua.ck.sampleapp.shared.store.user.UserStore.view
 
 
 class MainActivity : AppCompatActivity() {
