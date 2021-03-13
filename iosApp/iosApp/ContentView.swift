@@ -3,13 +3,11 @@ import shared
 
 
 struct ContentView: View {
+    
+    @ObservedObject var state: ContentState
+    
     var body: some View {
-        Text(Greeting().greeting())
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        Text(state.platform?.platform ?? Greeting().greeting())
+            .onTapGesture(perform: { state.update(msg: state.platform!.getPlatform()) })
     }
 }

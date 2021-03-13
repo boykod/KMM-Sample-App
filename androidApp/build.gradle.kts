@@ -96,4 +96,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:${Versions.compose_activity}")
     implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
+
+    /*Oolong*/
+    implementation("org.oolong-kt:oolong:${Versions.oolong}")
 }

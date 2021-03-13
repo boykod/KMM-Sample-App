@@ -21,4 +21,7 @@ object Versions {
     // DI
     val kodein = "7.1.0"
 
+    // Oolong
+    val oolong = "2.1.0"
+
 }

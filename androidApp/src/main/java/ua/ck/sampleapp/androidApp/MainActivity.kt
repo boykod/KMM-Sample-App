@@ -3,8 +3,10 @@ package ua.ck.sampleapp.androidApp
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import ua.ck.sampleapp.shared.Greeting
 import ua.ck.sampleapp.shared.Logger
+import ua.ck.sampleapp.shared.PlatformStore.init
+import ua.ck.sampleapp.shared.PlatformStore.update
+import ua.ck.sampleapp.shared.PlatformStore.view
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +15,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Logger().log("MainActivity", "onCreate")
 
-        setContent { GreetingView(title = Greeting().greeting()) }
+        oolong.runtime(
+            init,
+            update,
+            view,
+            { props, dispatch ->
+                setContent { GreetingView(props, dispatch) }
+            }
+        )
     }
 }

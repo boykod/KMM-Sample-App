@@ -41,6 +41,9 @@ kotlin {
 
                 /*DI*/
                 implementation("org.kodein.di:kodein-di:${Versions.kodein}")
+
+                /*Oolong*/
+                implementation("org.oolong-kt:oolong:${Versions.oolong}")
             }
         }
         val commonTest by getting {
