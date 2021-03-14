@@ -30,6 +30,7 @@ fun GreetingView(props: UserStore.Props, dispatch: Dispatch<UserStore.Msg>) {
     when (val result = props.data) {
         is UserFetchResult.Loading -> LoadingView()
         is UserFetchResult.Content -> UserDetailsView(result.data)
+        is UserFetchResult.Error -> ErrorLoading(message = result.message)
     }
 }
 
@@ -40,6 +41,16 @@ fun LoadingView() {
         contentAlignment = Alignment.Center
     ) {
         Text(text = "Loading...")
+    }
+}
+
+@Composable
+fun ErrorLoading(message: String) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = message)
     }
 }
 

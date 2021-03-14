@@ -1,5 +1,6 @@
 package ua.ck.sampleapp.shared.store.user
 
+import io.ktor.client.features.*
 import oolong.Init
 import oolong.Update
 import oolong.View
@@ -25,7 +26,22 @@ object UserStore {
     }
 
     private fun loadData(username: String) = effect<Msg> { dispatch ->
-        dispatch(Msg.LoadDataSuccess(userRepository.getUser(username)))
+        try {
+            dispatch(Msg.LoadDataSuccess(userRepository.getUser(username)))
+        } catch (throwable: Throwable) {
+            dispatch(Msg.LoadDataError(handleError(throwable)))
+        }
+    }
+
+    fun handleError(throwable: Throwable): String {
+        val clientRequest = (throwable as? ClientRequestException)
+        val serverResponse = (throwable as? ServerResponseException)
+
+        return when {
+            clientRequest != null -> clientRequest.message.toString()
+            serverResponse != null -> serverResponse.message.toString()
+            else -> throwable.message.toString()
+        }
     }
 
     class Props(
